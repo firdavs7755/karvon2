@@ -5,9 +5,7 @@ import st from './products.module.scss';
 import Slider from 'react-slick';
 import cl from 'classnames';
 import { Product , InnerLoader} from '../../components';
-
-
-
+import Filter from "./filterByCategory/Filter";
 
 function Products(props){
 
@@ -18,13 +16,16 @@ function Products(props){
         setProductList(props.products.data)
     },[props])
     return(
-        <div className="container">
+        <div className="container m-0 p-0">
             <div className={st.products}>
                 {
                     request && <InnerLoader/>
                 }
                 <h1 className={st.section_title}>Barcha maxsulotlar</h1>
-                <div className="row">
+                <div className="row pr-0 pl-0 mr-0 ml-0">
+                    <div className="col-md-3">
+                        <Filter/>
+                    </div>
                     <div className="col-12 col-md-8 col-xl-9">
                         <div className="row">
                             {

@@ -134,17 +134,17 @@
 
 .rating{
     i{
-        font-size: 17px !important;
+        font-size: 15px !important;
     }
     @media(max-width:705px){
         i{
-            font-size: 14px !important;
+            font-size: 11px !important;
         }
     }
 
     @media(max-width: 415px){
         i{
-            font-size: 8px !important;
+            font-size: 6px !important;
         }
     }
 }

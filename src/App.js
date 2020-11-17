@@ -46,7 +46,7 @@ class App extends Component {
                 <div className="app">
                     <Switch>
                         <Layout>
-                            <div className="page-contents">
+                            <div className="page-contents pr-0">
                                 <Route exact path='/' exact component={Home} />
                                 <Route exact path='/blogs/'  component={Blogs} />
                                 <Route exact path='/blogs/:id'  component={Blog} />

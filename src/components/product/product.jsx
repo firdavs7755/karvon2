@@ -52,7 +52,7 @@ function Product(props){
                         <ReactStars
                             classNames={st.rating}
                             count={5}
-                            size={13}
+                            size={10}
                             isHalf={true}
                             emptyIcon={<i className="fa fa-fw fa-star"></i>}
                             filledIcon={<i className="fa fa-fw fa-star"></i>}
