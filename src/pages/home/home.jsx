@@ -9,6 +9,7 @@ import Hit from './hit/hit';
 import Popular from './popular/popular';
 import { InnerLoader } from '../../components'
 import Axios from 'axios';
+import { api, baseUrl } from '../../api/api';
 
 
 class Home extends Component {
@@ -23,7 +24,23 @@ state = {
 }
 
 componentDidMount(){
-    Axios.get('http://cdn.umdsoft.uz/api/ui')
+    // (async function(){
+    //     try{
+    //         const res = await api.get('/ui');
+    //
+    //         if(res.status == 200){
+    //             this.setState({
+    //                 data: {
+    //                     slider:
+    //                 }
+    //             });
+    //         }
+    //     }catch(err){
+    //         console.log(err);
+    //     }
+    // }())
+
+    Axios.get(`${baseUrl}ui`)
         .then( res =>{
             this.setState({
                 data : {

@@ -2,7 +2,6 @@ import React , {useState , useEffect} from 'react'
 import st from './profil.module.scss'
 import { productApi } from '../../service/productService';
 import brin from '../../img/brin.jpg';
-import ReactStars from 'react-rating-stars-component';
 import { CreateStore } from '../../pages'
 import { TreeSelect , ProductCard } from '../../components';
 import 'react-quill/dist/quill.snow.css';
@@ -12,11 +11,15 @@ import {connect} from 'react-redux';
 import $ from 'jquery';
 import cx from 'classnames';
 import cart from '../../img/emptycart.png';
-import Swal from 'sweetalert2'; 
+import Swal from 'sweetalert2';
+import WishList from "../wishlist/wishlist";
+import axios from 'axios';
+import { api } from '../../api/api';
 
 const Profil = (props) => {
 
     const id = decoder(localStorage.getItem('token')).id;
+    const token = localStorage.getItem('token');
     let myProducts = [];
     props.products.data.forEach( product =>{
         product.author._id === id && myProducts.push(product);
@@ -24,58 +27,139 @@ const Profil = (props) => {
 
     const [products,setProducts] = useState(myProducts);
 
-    
+    $('#personalInfo').addClass(st.content_item_visible);
+    $('#personalInfo_a').addClass(st.user_menu_list_link_active);
 
     useEffect(()=>{
         let pro = []
         props.products.data.forEach( product =>{
             product.author._id === id && pro.push(product);
         })
-        setProducts(pro)
+        setProducts(pro);
+
+        (async function(){
+            try{
+                const res = await api(token).get('auth/profile');
+
+                console.log(res);
+                if(res.status == 200){
+                    console.log(res);
+                }
+
+            }catch(err){
+                console.log(err);
+            }
+        }())
     },[props])
 
+    const chat = [
+        {type_message: 'send',title: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, reiciendis!", time: "08:55"},
+        {type_message: 'receive',title: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, reiciendis!", time: "08:55"},
+        {type_message: 'receive',title: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, reiciendis!", time: "08:55"},
+        {type_message: 'send',title: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, reiciendis!", time: "08:55"},
+        {type_message: 'receive',title: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, reiciendis!", time: "08:55"},
+        {type_message: 'send',title: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, reiciendis!", time: "08:55"},
+        {type_message: 'receive',title: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, reiciendis!", time: "08:55"},
+        {type_message: 'send',title: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, reiciendis!", time: "08:55"},
+    ]
     const links = [
-        {to: "personalInfo", title:"Shahsiy ma'lumotlar", icon: "fa fa-user"},
         {to : "createStore", title : "Do'kon yaratish" , icon : "fa fa-plus" },
         {to: "createProduct", title:"Maxsulot qo'shish", icon: "fa fa-cart-plus"},
-        {to : "myProducts", title : "Mening maxsulotlarim", icon : "fa fa-th-large"}
+        {to : "myProducts", title : "Mening do'konim", icon : "fa fa-th-large"}
     ]
-    
+    const links2 =[
+        {to: "personalInfo", title:"Shahsiy ma'lumotlar", icon: "fa fa-user"},
+        {to: "personalChat", title : "Chat", icon:"fa fa-comment"},
+        {to: "personalLike", title : "Yoqtirganlar", icon:"fa fa-heart"},
+    ]
 
     return (
-        <div className={cx(st.profil)}>
-            <div className="container">
-                <ProfileCard sidebarData={links}/>
-                <div className={st.content}>
-                    <div id="createStore" className={cx(st.content_item)}>
-                        <CreateStore/>
+        <div className={cx(st.user_body)}>
+            <div className="row py-2">
+                <div className="col-md-3">
+                    <div className={cx(st.user__photo)}>
+                        <img className={cx(st.user__photo)} src={brin} alt="user"/>
                     </div>
-                    <div id="createProduct" className={cx(st.content_item)}>
-                        <AddProduct props={props} onComplete={()=>{
-                            productApi.getroducts()
-                                .then( res =>{
-                                    props.setProducts(res.data);
-                                })
-                        }} categories={props.category}/>
-                    </div>
-                    <div id="myProducts" className={cx(st.content_item)}>
-                        <div className="row p-0 bg-white">
-                            <div className="col-12 mb-2 p-3 ">
-                                { products.length > 0 && <h1 className="text-center my-4">Mening maxsulotlarim</h1> }
-                            </div>
+                    <div  className={st.user_menu}>
+                        <ul className={st.user_menu_list}>
                             {
-                                products.length>0 ? products.map((item,index)=>{
-                                    return(
-                                        <div className="col-6 col-md-4 col-lg-3 p-0" key={index}>
-                                            <ProductCard lang="uz" product={item}  props={props} />
-                                        </div>
-                                    )
-                                }) : 
-                                <div className={st.empty}>
-                                    <img src={cart} alt=""/>
-                                    <h2>Siz hali hech qanday maxsulot qo'shmagansiz !</h2>
-                                </div>
+                                links.map((item,index)=>
+                                    <li className={st.user_menu_list_item}>
+                                        <a id={item.to+'_a'}
+                                           className={st.user_menu_list_link}
+                                           onClick={ e => toggleTab(e,links,links2,index,e.currentTarget.getAttribute('tab-target'))}
+                                           tab-target={`#${item.to}`}>
+                                            <i className={item.icon}/> <span>{item.title}</span>
+                                        </a>
+                                    </li>
+                                )
                             }
+                        </ul>
+                    </div>
+                </div>
+                <div className='col-md-9 px-5'>
+                    <div className={cx(st.user_body_right)}>
+                        <div className={(st.user_info)}>
+                            <h1>Sergey Brin</h1>
+                            <h4>Senior software engineer</h4>
+                        </div>
+                        <div  className={st.user_menu}>
+                            <ul className={st.user_menu_list}>
+                                {
+                                    links2.map((item,index)=>
+                                        <li className={st.user_menu_list_item}>
+                                            <a id={item.to+'_a'}
+                                               className={st.user_menu_list_link}
+                                               onClick={ e => toggleTab(e,links2,links,index,e.currentTarget.getAttribute('tab-target'))}
+                                               tab-target={`#${item.to}`}>
+                                                <i className={item.icon}></i> <span>{item.title}</span>
+                                            </a>
+                                        </li>
+                                    )
+                                }
+                            </ul>
+                        </div>
+                        <div className={st.content}>
+                            <div id="personalLike" className={cx(st.content_item)}>
+                                <PersonalLike/>
+                            </div>
+                            <div id="personalChat" className={cx(st.content_item)}>
+                                <PersonalChat chat={chat}/>
+                            </div>
+                            <div id="personalInfo" className={cx(st.content_item)}>
+                                <PersonalInfo/>
+                            </div>
+                            <div id="createStore" className={cx(st.content_item)}>
+                                <CreateStore/>
+                            </div>
+                            <div id="createProduct" className={cx(st.content_item)}>
+                                <AddProduct props={props} onComplete={()=>{
+                                    productApi.getroducts()
+                                        .then( res =>{
+                                            props.setProducts(res.data);
+                                        })
+                                }} categories={props.category}/>
+                            </div>
+                            <div id="myProducts" className={cx(st.content_item)}>
+                                <div className="row p-0 bg-white">
+                                    <div className="col-12 mb-2 p-3 ">
+                                        { products.length > 0 && <h1 className="text-center my-4">Mening maxsulotlarim</h1> }
+                                    </div>
+                                    {
+                                        products.length>0 ? products.map((item,index)=>{
+                                                return(
+                                                    <div className="col-6 col-md-4 col-lg-3 p-0" key={index}>
+                                                        <ProductCard lang="uz" product={item}  props={props} />
+                                                    </div>
+                                                )
+                                            }) :
+                                            <div className={st.empty}>
+                                                <img src={cart} alt=""/>
+                                                <h2>Siz hali hech qanday maxsulot qo'shmagansiz !</h2>
+                                            </div>
+                                    }
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -84,8 +168,85 @@ const Profil = (props) => {
     );
 }
 
+function PersonalLike(props){
+    return(
+        <WishList/>
+    )
+}
+function PersonalChat(props){
+    return(
+        <div className={st.personalChat}>
+            {
+                props.chat.map( (item) => {
+                    if(item.type_message === 'send'){
+                        return(
+                            <div className={st.bubbleWrapper}>
+                                <div className={cx(st.inlineContainer, st.own)}>
+                                    <div className={cx(st.ownBubble, st.own)}>
+                                        {item.title}
+                                    </div>
+                                    <img className={st.inlineIcon} src={brin}/>
+                                </div>
+                                <span className={st.own}>{item.time}</span>
+                            </div>
+                        )
+                    }
+                    else{
+                        return (
+                            <div className={st.bubbleWrapper}>
+                                <div className={st.inlineContainer}>
+                                    <img className={st.inlineIcon}
+                                         src="https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png"/>
+                                    <div className={cx(st.otherBubble, st.other)}>
+                                        {item.title}
+                                    </div>
+                                </div>
+                                <span className={st.other}>{item.time}</span>
+                            </div>
+                        )
+                    }
+                })
+            }
+            <div className="input-group px-5 py-4">
+                <input id="input__send" type="text" className="form-control py-3" placeholder="Nimadir yozing" aria-describedby="basic-addon2"/>
+                <div className='input-group-append'>
+                    <button className="py-3 px-5 btn btn-info" id="basic-addon2">SEND</button>
+                </div>
+            </div>
+        </div>
+    )
+}
 
-
+function PersonalInfo (props) {
+    return (
+        <div className={cx(st.personalInfo)}>
+            <div className={st.personalInfo_title}>
+                <h4>Overview</h4>
+            </div>
+            <hr/>
+            <div className={st.personalInfo_menu}>
+                <div className='row'>
+                    <div className='col-md-6'>
+                        <ul>
+                            <li><i className="fas fa-users"/> 2 Positive Refference</li>
+                            <li><i className="fas fa-comment"/>Fluent English. Learn Italian</li>
+                            <li><i className="fas fa-calendar"/>22, Male</li>
+                            <li><i className="fas fa-user-friends"/>Member since 2015</li>
+                        </ul>
+                    </div>
+                    <div className='col-md-6'>
+                        <ul>
+                            <li><i className="fas fa-suitcase-rolling"/>Travel Blogger</li>
+                            <li><i className="fas fa-book"/>Penn State University</li>
+                            <li><i className="fas fa-map-marker-alt"/>From West Chester, PA, USA</li>
+                            <li><i className="fas fa-id-badge"/>Profile 100% complate</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
 function AddProduct({categories,props , onComplete}){
 
     const [request,setRequest] = useState(false);
@@ -133,22 +294,22 @@ function AddProduct({categories,props , onComplete}){
         if(fullFilled){
             setRequest(true);
             productApi.addProduct(form)
-            .then( res => {
-                setRequest(false);
-                onComplete();
-                Swal.fire({
-                    title : "Qo'shildi",
-                    text : "Maxsulot muvoffaqiyatli qo'shildi",
-                    icon : "success"
-                })
-            }, err => {
-                setRequest(false);
-                Swal.fire({
-                    title : "Xatolik",
-                    text : "Maxsulotni qo'shishda xatolik . Balki maydonlarni xato to'ldirgandirsiz ?",
-                    icon : "error"
-                })
-            });
+                .then( res => {
+                    setRequest(false);
+                    onComplete();
+                    Swal.fire({
+                        title : "Qo'shildi",
+                        text : "Maxsulot muvoffaqiyatli qo'shildi",
+                        icon : "success"
+                    })
+                }, err => {
+                    setRequest(false);
+                    Swal.fire({
+                        title : "Xatolik",
+                        text : "Maxsulotni qo'shishda xatolik . Balki maydonlarni xato to'ldirgandirsiz ?",
+                        icon : "error"
+                    })
+                });
         }else{
             Swal.fire("Xatolik","Iltimos , barcha maydonlarni tog'ri to'ldiring","error")
         }
@@ -226,7 +387,7 @@ function AddProduct({categories,props , onComplete}){
                     </div>
                     <div className="col-12">
                         <button disabled={request} className={st.addProductSubmitButton} type="submit">
-                            Qo'shish { request && <i className="fa fa-fw fa-circle-notch fa-spin"></i> }
+                            Qo'shish { request && <i className="fa fa-fw fa-circle-notch fa-spin"/> }
                         </button>
                     </div>
                 </div>
@@ -234,57 +395,18 @@ function AddProduct({categories,props , onComplete}){
         </div>
     )
 }
+function toggleTab(e,obj,obj2,index,id){
+    for (let i = 0; i < 3; i++) {
+        $("#"+obj[i].to+"_a").removeClass(st.user_menu_list_link_active);
+    }
+    for (let i = 0; i < 3; i++) {
+        $("#"+obj2[i].to+"_a").removeClass(st.user_menu_list_link_active);
+    }
+    $("#"+obj[index].to+"_a").addClass(st.user_menu_list_link_active);
 
-function ProfileCard({sidebarData}){
-    return(
-        <div className={st.profile_card}>
-            <div className={cx(st.profile_card_dropdown)}>
-                <div className={cx("dropdown")}>
-                    <button className="dropdown-toggl" data-toggle="dropdown">
-                        ...
-                    </button>
-                    <div className="dropdown-menu dropdown-menu-right withArrow">
-                        <SideBar data={sidebarData}/>
-                    </div>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-12 col-md-4 col-lg-2">
-                    <img src={brin} alt="Sergey Brin"/>
-                </div>
-                <div className={cx(st.profile_card_info,"col-12 col-md-8 col-lg-10")}>
-                    <h3>Sergey Brin</h3>
-                    <p>Senior software engineer</p>
-                    <div className="d-flex justify-content align-items-center justify-content-md-between flex-wrap flex-column flex-md-row">
-                    <ul>
-                        <li> <a href="#"> <i className="fab fa-fw fa-facebook-f"></i> Facebook</a> </li>
-                        <li> <a href="#"> <i className="fab fa-fw fa-telegram-plane"></i> Telegram</a> </li>
-                        <li> <a href="#"> <i className="fab fa-fw fa-instagram"></i> Instagram</a> </li>
-                    </ul>
-                    <ReactStars value={5} size={25} activeColor="#FFAA00" color="#ddd" edit={false}/>
-                    </div>
-                </div>
-            </div>
-        </div>
-                    
-    )
-}
-
-function SideBar({data}){
-    return( 
-        data.map((item,index)=>{
-            return(
-                <a key={index} role="tab" className={cx(st.profile_card_dropdown_item,"dropdown-item")} onClick={ e => toggleTab(e,e.currentTarget.getAttribute('tab-target')) } tab-target={`#${item.to}`}><i className={item.icon}></i>  <span>{item.title}</span></a>
-            )
-        })
-    )
-}
-
-function toggleTab(e,id){
     $(id).siblings().removeClass(st.content_item_visible);
     $(id).addClass(st.content_item_visible);
 }
-
 const mstp = state => (state);
 const mdtp = dispatch =>({
     setProducts : (data) => {
