@@ -3,13 +3,13 @@ import st from './navbar.module.scss'
 import cx from 'classnames'
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { CategoryList } from '../../';
+// import { CategoryList } from '../../';
 import { useEffect } from 'react';
 
 
 const Navbar = (props) => {
     const [shart, setShart] = useState(false);
-    const [open, setOpen] = useState(false);
+    // const [open, setOpen] = useState(false);
     const lang = props.lang.lang;
     const links = [
         {text: lang.home, to:'/'},
@@ -29,12 +29,12 @@ const Navbar = (props) => {
         <React.Fragment>
             <div className={cx(st.navbar)}>
                 <div className={cx(st.row)}>
-                    <div className={cx(st.col)}>
+                    {/* <div className={cx(st.col)}>
                         <Link className={cx(st.categori)} onClick={ () => setOpen(!open)}>
                             <i className={`bx bx-fw bx-${open ? "x" : "menu-alt-left"}`} style={{fontSize : "13px", marginRight : "3px"}}></i>
                             <span className={cx(st.categori_text)}> {lang.allCategori} </span>
                         </Link>
-                    </div>
+                    </div> */}
                     <div className={cx(st.nav, shart ? st.show : st.closed)}>
                         <div className={st.close} onClick={() => setShart(false)}>
                             <span className={st.close_icon}>
@@ -49,13 +49,13 @@ const Navbar = (props) => {
                 </div>
                 <div className={cx(st.darkley, shart ? st.block : st.none)}  onClick={() => setShart(false)}></div>
             </div>
-            <div className={cx(st.relative)}>
+            {/* <div className={cx(st.relative)}>
                 {
                     open && <CategoryList onClose={()=>{
                                 setOpen(false)
                             }} data={props.category} type={props.lang.type}/>
                 }
-            </div>
+            </div> */}
         </React.Fragment>
     );
 }

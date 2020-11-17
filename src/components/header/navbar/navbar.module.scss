@@ -20,66 +20,66 @@
     margin-right:2rem;
 }
 
-.categori{
-    display:flex;
-    color:black;
-    background:#FEDB4D;
-    font-size:0.8rem;
-    padding:1.45rem 2rem;
-    justify-content: space-between;
-    align-items: baseline;
-    transition:all .2s;
+// .categori{
+//     display:flex;
+//     color:black;
+//     background:#FEDB4D;
+//     font-size:0.8rem;
+//     padding:1.45rem 2rem;
+//     justify-content: space-between;
+//     align-items: baseline;
+//     transition:all .2s;
 
 
-    &_text{
-        text-transform:uppercase;
-        margin:0;
-        font-size: 13px;
-        white-space: nowrap;
-        width: 90%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+//     &_text{
+//         text-transform:uppercase;
+//         margin:0;
+//         font-size: 13px;
+//         white-space: nowrap;
+//         width: 90%;
+//         overflow: hidden;
+//         text-overflow: ellipsis;
+//     }
 
-    &_button{
-        display:inline-block;
-        width:2.5rem;
-        border:1px solid black;
-        position:relative;
-        transition:all .2s;
-        border-left:0;
-        border-right:0;
+//     &_button{
+//         display:inline-block;
+//         width:2.5rem;
+//         border:1px solid black;
+//         position:relative;
+//         transition:all .2s;
+//         border-left:0;
+//         border-right:0;
 
 
-        &::after{
-            top:-.6rem;
-        }
-        &::before{
-            bottom:-.6rem;
-        }
+//         &::after{
+//             top:-.6rem;
+//         }
+//         &::before{
+//             bottom:-.6rem;
+//         }
 
-    }
+//     }
 
-    &:hover{
-        color:#4E7DF1;
-        text-decoration:none;
+//     &:hover{
+//         color:#4E7DF1;
+//         text-decoration:none;
 
-        .categori_button{
-            border:1px solid #4E7DF1;
-            border-left:0;
-            border-right:0;
+//         .categori_button{
+//             border:1px solid #4E7DF1;
+//             border-left:0;
+//             border-right:0;
 
-            &::after{
-                top:-.7rem;
-                border:1px solid #4E7DF1;
-            }   
-            &::before{
-                bottom:-.7rem;
-                border:1px solid #4E7DF1;
-            }   
-        }
-    }
-}
+//             &::after{
+//                 top:-.7rem;
+//                 border:1px solid #4E7DF1;
+//             }   
+//             &::before{
+//                 bottom:-.7rem;
+//                 border:1px solid #4E7DF1;
+//             }   
+//         }
+//     }
+// }
 
 .nav{
     display:flex;
