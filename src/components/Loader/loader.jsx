@@ -6,7 +6,7 @@ import cl from 'classnames';
 function Loading(){
     return(
         <div className={cl(st.loader)}>
-            <MetroSpinner color="#4E7DF1" size={70}/>
+            <MetroSpinner color="#fff" size={70}/>
             <p>Iltimos kutib turing</p>
         </div>
     )

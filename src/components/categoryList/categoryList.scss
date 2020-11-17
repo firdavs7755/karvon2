@@ -1,7 +1,9 @@
 .categoryList{
     display: block;
     position: absolute;
-    top: 0px;
+    top: 90px;
+    left: 0;
+    z-index: 100;
     padding: 20px 5px;
     width: 90%;
     background: #eee;

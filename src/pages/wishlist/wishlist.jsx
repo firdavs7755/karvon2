@@ -113,7 +113,7 @@ function WishList(props){
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
         )
     }
 }
