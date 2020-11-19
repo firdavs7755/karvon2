@@ -1,21 +1,44 @@
 import React from 'react'
 import './news.scss'
+import Axios from 'axios';
+import { api, baseUrl } from '../../api/api';
 import { InnerLoader } from '../../components';
+import hot from '../home/hot/hot';
 
 class News extends React.Component {
 
     state = {
-        loading: true
+        loading: true,
+        data: {
+            hot: []
+        }
+    }
+
+    componentDidMount() {
+        Axios.get(`${baseUrl}ui`)
+        .then( res =>{
+            this.setState({
+                data : {
+                    hot : res.data.goryachi
+                }
+            },()=>{
+                this.setState({loading : false})
+            })
+        })
+    }
+
+    componentDidUpdate() {
+        console.log(this.state.data.hot)
     }
 
 
     render() {
 
-        // if(this.state.loading){
-        //     return(
-        //         <InnerLoader />
-        //     )
-        // }else{
+        if(this.state.loading){
+            return(
+                <InnerLoader />
+            )
+        }else{
             return (
                 <div className="news">
                     <div className='last_news'>
@@ -89,23 +112,28 @@ class News extends React.Component {
                                 <div className='current_news__header_meta__view'>23744</div>
                                 <div className='current_news__header_meta__share_news'> Ulashing</div>
                             </div>
-                            <div className='current_news__header_title'>
-                                «Faqat shu orqali kommunal qarzdorlikni kamaytirish mumkin» - Alisher Qodirov saylovoldi va'dalaridan birini esladi
-                            </div>
                         </div>
 
                         <div className='current_news__content'>
-                            <h4>Kommunal to‘lovlarni aholi daromadiga qarab tabaqalashtirish orqali tizimdagi qarzdorlikni kamaytirish lozim, deb hisoblaydi «Milliy tiklanish» partiyasi raisi Alisher Qodirov.</h4>
+                            
                             <div className='current_news__content_img'>
                                 <img 
-                                    src='https://storage.kun.uz/source/6/E2GcoTE9oNOV8485c03b6hoGVS7E0QoV.jpg'
+                                    // src='https://storage.kun.uz/source/6/E2GcoTE9oNOV8485c03b6hoGVS7E0QoV.jpg'
+                                    src={`http://umdsoft.uz${this.state.data.hot[0].image}`}
                                 />
                                 <div className='current_news__content_img_caption'>
                                     Foto: Oliy Majlis Qonunchilik palatasi axborot xizmati
                                 </div>
                             </div>
-                            <p>lSint amet dolor sit mollit qui duis reprehenderit commodo magna aliqua ullamco consectetur velit eiusmod. Reprehenderit aute deserunt duis pariatur minim nulla quis adipisicing occaecat tempor. Nisi id ad eu in dolore adipisicing culpa dolor consectetur anim consequat esse Lorem. Ad proident laboris nulla magna laborum id enim et. Minim non sunt incididunt pariatur sit amet.</p>
-                            <p>lSint amet dolor sit mollit qui duis reprehenderit commodo magna aliqua ullamco consectetur velit eiusmod. Reprehenderit aute deserunt duis pariatur minim nulla quis adipisicing occaecat tempor. Nisi id ad eu in dolore adipisicing culpa dolor consectetur anim consequat esse Lorem. Ad proident laboris nulla magna laborum id enim et. Minim non sunt incididunt pariatur sit amet.</p>
+
+                            <div className='current_news__header_title'>
+                                {this.state.data.hot[0].title.uz}
+                            </div>
+
+                            <h4>{this.state.data.hot[0].description.uz}</h4>
+
+                            {/* <p>lSint amet dolor sit mollit qui duis reprehenderit commodo magna aliqua ullamco consectetur velit eiusmod. Reprehenderit aute deserunt duis pariatur minim nulla quis adipisicing occaecat tempor. Nisi id ad eu in dolore adipisicing culpa dolor consectetur anim consequat esse Lorem. Ad proident laboris nulla magna laborum id enim et. Minim non sunt incididunt pariatur sit amet.</p>
+                            <p>lSint amet dolor sit mollit qui duis reprehenderit commodo magna aliqua ullamco consectetur velit eiusmod. Reprehenderit aute deserunt duis pariatur minim nulla quis adipisicing occaecat tempor. Nisi id ad eu in dolore adipisicing culpa dolor consectetur anim consequat esse Lorem. Ad proident laboris nulla magna laborum id enim et. Minim non sunt incididunt pariatur sit amet.</p> */}
                         </div>
 
                     </div>
@@ -245,7 +273,7 @@ class News extends React.Component {
             );
         }
 
-    // }
+    }
 }
 
 export default News;
