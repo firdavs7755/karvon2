@@ -191,7 +191,7 @@ const podpis = () => {
                                         <input type="email" placeholder="Your email address" className={cx(st.podpis_input, 'form-control')} required />
                                         <div className={cx('input-group-append ')}>
                                             <a href="" className={cx(st.podpis_podpis)}>
-                                                подписываться
+                                                Подписаться
                                             </a>
                                         </div>    
                                     </div>

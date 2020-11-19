@@ -10,6 +10,7 @@ import Popular from './popular/popular';
 import { InnerLoader } from '../../components'
 import Axios from 'axios';
 import { api, baseUrl } from '../../api/api';
+import SignIn from './sign in/signIn';
 
 
 class Home extends Component {
@@ -63,6 +64,7 @@ render() {
         return (
             <div className="home">
                 <Premier data={this.state.data.slider}/>
+                {/* <SignIn /> */}
                 <Hot data={this.state.data.hot}/>
                 <Ekspert data={this.state.data.experts}/>
                 <Reyting/>

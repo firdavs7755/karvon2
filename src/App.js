@@ -10,7 +10,7 @@ import { productApi } from './service/productService';
 import { storeApi } from './service/storeService';
 import { Loader } from './components';
 
-import { Home, Blogs, Blog, SignUp , OneStore , Product , Reset, Profil , Entercode ,  Store , Products , Cart , WishList} from './pages'
+import { Home, News, Blogs, Blog, SignUp , OneStore , Product , Reset, Profil , Entercode ,  Store , Products , Cart , WishList} from './pages'
 
 class App extends Component {
 	state = {
@@ -48,6 +48,7 @@ class App extends Component {
                         <Layout>
                             <div className="page-contents pr-0">
                                 <Route exact path='/' exact component={Home} />
+                                <Route exact path='/news' exact component={News} />
                                 <Route exact path='/blogs/'  component={Blogs} />
                                 <Route exact path='/blogs/:id'  component={Blog} />
                                 <Route exact path='/sign-up' component={SignUp} />

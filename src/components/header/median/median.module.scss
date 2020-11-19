@@ -1,6 +1,6 @@
 .median{
     position:relative;
-    padding:1.5rem 50px;
+    padding:1.5rem 30px;
 
     @media(max-width: 950px){
         padding: 1.5rem 10px;
@@ -13,8 +13,24 @@
     justify-content: space-around;
     align-items: center;
 
+    @media(max-width: 990px){
+        flex-wrap: wrap;
+    }
+    
+
     @media(max-width:320px){
         flex-direction: column;
+    }
+}
+
+.first_block, .second_block{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    @media(max-width: 990px){
+        width: 100%;
+        justify-content: space-between;
     }
 }
 
@@ -82,6 +98,14 @@
 
 .form_group{
     width: 60rem;
+
+    @media(max-width:1250px){
+        width: 50rem !important;
+    }
+
+    @media(max-width: 1100px){
+        width: 40rem !important;
+    }
 
     @media(max-width:992px){
         width: 100% !important;
