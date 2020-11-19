@@ -3,6 +3,7 @@ import st from './store.module.scss';
 import cl from 'classnames';
 import { StoreCard } from '../../components';
 import { connect } from 'react-redux';
+import Filter from "../products/filterByCategory/Filter";
 
 function Store(props){
 
@@ -20,7 +21,10 @@ function Store(props){
                     <div className="col-12">
                         <h1 className="page_title">Do'konlar</h1>
                     </div>
-                    <div className="col-12 col-lg-9">
+                    <div className="col-lg-2 col-12">
+                        <Filter/>
+                    </div>
+                    <div className="col-12 col-lg-7">
                         {
                             stores.data.map((item,index)=>{
                                 return(

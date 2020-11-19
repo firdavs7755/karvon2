@@ -51,6 +51,7 @@ const Navbar = (props) => {
             </div>
             {/* <div className={cx(st.relative)}>
                 {
+
                     open && <CategoryList onClose={()=>{
                                 setOpen(false)
                             }} data={props.category} type={props.lang.type}/>
@@ -59,6 +60,7 @@ const Navbar = (props) => {
         </React.Fragment>
     );
 }
+
 
 const mstp = state => (state);
 

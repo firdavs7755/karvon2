@@ -84,7 +84,9 @@ function CategoryList({data,type,  onClose}){
                                             setActiveSub([].concat(item.children))
                                             setActive(item._id)
                                         }
-                                    }} key={item.name['uz']}> {item.name[type]} {item.children.length>0 && <i className="bx bx-right-arrow-alt"></i>} </li>
+                                    }} key={item.name['uz']}>
+                                        {item.name[type]} {item.children.length>0 && <i className="bx bx-right-arrow-alt"></i>}
+                                    </li>
                                 )
                             })
                         }
