@@ -1,7 +1,38 @@
 .productInfo{
   margin: 20px 0px;
 }
-
+.products_table_header{
+  p{
+    font-size: 16px;
+  }
+  button {
+    color: #000;
+    background: none;
+    border: none;
+  }
+}
+.product_prices{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-shadow: 0 0 10px #ddd;
+  li{
+    &:nth-child(1){
+      color: #000;
+      background-color: #ddd;
+    }
+    font-size: 16px;
+    color: #4E7DF1;
+    font-weight: 500;
+    padding: 10px 5px;
+    border-bottom: 1px solid #ddd;
+    img{
+      margin-right: 40px;
+      width: 50%;
+      height: 50px;
+    }
+  }
+}
 .preview{
   padding: 0px !important;
   max-height: 350px;
@@ -10,23 +41,33 @@
 
   button{
     position: absolute;
-    top: 45%;
+    top: 40%;
     z-index: 1;
     width: 30px;
-    height: 40px;
-    border: none;
+    height: 30px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
     background: transparent;
-    color: #1647c4;
+    color: #ddd;
     transition: .3s;
     cursor: pointer;
-
-    &:hover{
-      background: #4E7DF1;
-      color: white;
+    i{
+      margin-top: 2px;
+      font-size: 16px;
+      transition: .3s;
+      color: #ddd;
     }
-
-    &:last-of-type{
-      right: 0px !important;
+    &.chevron_right{
+      right: 23px;
+    }
+    &.chevron_left{
+      left: 23px;
+    }
+    &:hover{
+      border: 2px solid #fff;
+      i{
+        color: #fff;
+      }
     }
   }
 
@@ -50,6 +91,7 @@
 .seller_info{
   padding: 10px;
   background: white;
+  box-shadow: 0 0 10px #ddd;
   font-variant: small-caps !important;
   text-transform: lowercase;
 
@@ -166,7 +208,36 @@
     border-bottom: 1px solid lightgray;
   }
 }
-
+.products_table{
+  table{
+    padding: 0;
+    margin: 0;
+    tr{
+      justify-content: space-between;
+      align-items: center;
+      td{
+        padding: 20px 0px;
+        align-content: center;
+        &:nth-child(1){
+          width: 20%;
+        }
+        &:nth-child(2),&:nth-child(3){
+          padding: 0 30px!important;
+        }
+        font-size: 16px;
+        button{
+          border: none;
+          background: #4E7DF1;
+          color: #fff;
+          padding: 10px 15px;
+        }
+        img{
+          width: 80px;
+        }
+      }
+    }
+  }
+}
 .actions{
   display: flex;
   align-items: center;

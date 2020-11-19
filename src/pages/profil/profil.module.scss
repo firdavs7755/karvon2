@@ -253,9 +253,24 @@
 .personalInfo{
     background: white;
     &_title{
-        padding: 20px 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 8px 28px;
         h4{
             font-size: 25px;
+        }
+        hr{
+            padding: 0;
+            margin: 0;
+        }
+        .personalInfo_edit{
+            padding-right: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            &:hover{
+                color: #3761c8;
+            }
         }
     }
     &_menu{
@@ -364,14 +379,32 @@
 
 .user_body{
     padding: 10px 5px;
-    background: #EFEDE2;
+    background: #ffffff;
     .user__photo{
+        position: relative;
+        background-size: cover;
         width: 100%;
+        &:hover{
+            opacity: 0.4;
+            cursor: pointer;
+            i{
+                top: 30%;
+                left: 120px;
+                //transform: translate(120px,80px);
+                display: block;
+                position: absolute;
+            }
+        }
+        i{
+            display: none;
+            font-size: 60px;
+        }
+
     }
     .user_menu{
         width: 100%;
         margin-top: 10px;
-        background: #fff;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
         .user_menu_title{
             font-size: 20px;
             color: #fff;
@@ -406,7 +439,7 @@
         .user_menu{
             width: 100%;
             margin-top: 10px;
-            background: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
             .user_menu_title{
                 font-size: 20px;
                 color: #fff;
@@ -436,6 +469,7 @@
 
         }
         .content{
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
             margin: 30px 0 !important;
             h1{
                 font-family: Extra-bold;
@@ -460,4 +494,12 @@
         }
 
     }
+}
+.modal_edit_body{
+    label{
+        font-size: 16px;
+    }
+}
+.btn_edit{
+    font-size: 16px;
 }
