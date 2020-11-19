@@ -72,7 +72,7 @@ function Reset(){
 
                                 <h2 className={cx(st.reset_title)}>Забыли Ваш пароль ?</h2>
                                 <p className={cx(st.reset_description)}>Введите свой номер телефона, чтобы отправить код
-                                    для сброса пароля</p>
+                                    для сброса пароля.</p>
                             </div>
                             <div className={cx("input-group", st.reset_input)}>
                                 <span className="input-group-prepend">
