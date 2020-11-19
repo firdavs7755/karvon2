@@ -1,6 +1,7 @@
 .hot{
+    width: 100%;
     position:relative;
-    padding:2rem 0;
+    padding:2rem;
     overflow:hidden;
 }
 
@@ -10,10 +11,65 @@
     justify-content: space-between;
 }
 
+.hot_items {
+    display: flex;
+    width: 100%;
+}
+
+.last_hot_card {
+    width: 50%;
+
+    .main {
+        width: 97% !important;
+        height: 100%;
+
+        a {
+            top: 6px;
+        }
+    }
+}
+
+.hot_cards{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 50%;
+
+    &_item {
+        display: flex;
+        width: 100%;
+    }
+
+    .simple {
+        margin-bottom: 5px;
+        width: 50% !important;
+        height: 100%;
+
+        a {
+            font-size: 15px;
+            top: 9px;
+        }
+
+        button {
+            width: 150px;
+            height: 44px;
+            font-size: 17px;
+            padding: 0px 5px 10px;
+        }
+    }
+    
+}
+
+
+
+
+
+
 .box{
     position:relative;
-    box-shadow:0px 2px 5px rgba(black,0.2);
-    width: 96%;
+    box-shadow:0px 0px 5px rgba(black,0.2);
+    width: 98%;
     height: 350px;
     margin: 0px 2%;
     border-radius: 5px;
@@ -35,7 +91,8 @@
 
     &:hover{
         &::after{
-            background: linear-gradient(rgba(0, 0, 255, 0.568) 10%,rgba(0, 0, 255, 0.766) );
+            background: rgba(0, 0, 0, 0.7);
+            background-blend-mode: soft-light;
             z-index: 2;
         }
 
@@ -45,6 +102,9 @@
             visibility: visible;
             opacity: 1;
             transform: translate(-50%, -50%) scale(1);
+        }
+        &>p {
+            opacity: .5;
         }
     }
 
@@ -56,7 +116,6 @@
         right: 0px;
         bottom: 0px;
         content: "";
-        background: linear-gradient(rgba(0, 0, 255, 0.168) 10%,rgba(0, 0, 255, 0.766) );
     }
 
     a{
@@ -91,19 +150,23 @@
         text-overflow: ellipsis;
         z-index: 1;
         overflow: hidden;
-        color:  rgb(255, 154, 1) !important;
+        color:  #fff !important;
+        background-color: #4E7DF1;
         word-spacing: 1px;
         font-size: 14px;
         z-index: 10;
         letter-spacing: 2px;
         position: absolute;
-        bottom: 10px;
-        padding: 0px 15px;
+        bottom: 0px;
+        padding: 0px 15px 5px;
         left: 0px;
         right: 0px;
+        margin-bottom: 0 !important;
     }
 
     button{
+        width: 200px;
+        height: 48px;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -116,10 +179,19 @@
         background: transparent;
         border: 1px solid rgb(59, 151, 255);
         color: white;
-        padding: 10px 20px;
+        padding: 6px 10px;
         cursor: pointer;
         visibility: hidden;
         opacity: 1;
         pointer-events: none;
     }
+}
+
+
+.hot_card {
+    width: 50%;
+}
+
+.hot_card_img{
+    width: 200px;
 }
