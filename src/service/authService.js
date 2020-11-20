@@ -12,7 +12,7 @@ export const authApi = {
         return axios.post(`${api}forgotpasswordtosms/`,phone)
     },
     sendResetCodeAndPhone : data => {
-        return axios.post(`${api}checkcode/`,{phone:data.phone},{
+        return axios.post(`${api}checkcode/`,{
             headers:{
                 phone:data.phone,
                 code:data.code
