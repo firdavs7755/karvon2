@@ -7,16 +7,21 @@ import hot from '../home/hot/hot';
 
 class News extends React.Component {
 
-    state = {
-        loading: true,
-        data: {
-            hot: []
+    constructor(props){
+        super(props);
+        this.state = {
+            loading: true,
+            data: {
+                hot: []
+            }
         }
     }
+   
 
     componentDidMount() {
         Axios.get(`${baseUrl}ui`)
-        .then( res =>{
+        .then( res => {
+            console.log(res);
             this.setState({
                 data : {
                     hot : res.data.goryachi
@@ -33,7 +38,6 @@ class News extends React.Component {
 
 
     render() {
-
         if(this.state.loading){
             return(
                 <InnerLoader />
