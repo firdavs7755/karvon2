@@ -3,12 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f2bdb801-b518-4728-8d41-f2138b7947ef" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/footer/footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/footer/footer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/entercode/entercode.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/entercode/entercode.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/resetpassword/reset.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/resetpassword/reset.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/entercode/entercode.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/entercode/entercode.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/resetpassword/reset.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/resetpassword/reset.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sign-up/personal/personal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sign-up/personal/personal.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/authService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/authService.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,6 +21,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -49,7 +46,8 @@
       <option name="presentableId" value="Default" />
       <updated>1605854691698</updated>
       <workItem from="1605854697427" duration="421000" />
-      <workItem from="1605863150209" duration="15598000" />
+      <workItem from="1605863150209" duration="17471000" />
+      <workItem from="1605945587215" duration="5361000" />
     </task>
     <servers />
   </component>
