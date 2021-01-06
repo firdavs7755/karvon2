@@ -10,7 +10,7 @@
     "@testing-library/user-event": "^7.2.1",
     "@tinymce/tinymce-react": "^3.8.1",
     "animate.css": "^4.1.1",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "bootstrap": "^5.0.0-alpha2",
     "boxicons": "^2.0.5",
     "classnames": "^2.2.6",
